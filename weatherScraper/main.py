@@ -9,6 +9,7 @@ import dbinfo
 import traceback
 import requests
 import datetime
+import time
 import sqlalchemy
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, Float, String, DateTime, insert
 
@@ -37,3 +38,23 @@ weather = Table(
     Column('time', DateTime)
 )
 
+
+"""
+main
+"""
+def main():
+    while True:
+        try:
+
+            curr_weather = requests.get(WEATHER, params={"q": CITY, "appid": dbinfo.OW_APIkey})
+            values = get_weather(curr_weather.json() )
+            insert = weather.insert().values(values)
+            engine.execute(insert)
+
+            time.sleep(60*60)
+
+        except:
+
+            print(traceback.format_exc())
+    
+    return
