@@ -58,3 +58,30 @@ def main():
             print(traceback.format_exc())
     
     return
+
+
+"""
+get weather data
+"""
+def get_weather(weather):
+    
+    try:
+        rain = round(weather['rain']['1h'], 1)
+    except:
+        rain = 0
+    
+    try:
+        
+        return {
+            'main': weather['weather'][0]['main'],
+            'description': weather['weather'][0]['description'],
+            'temp': round(weather['main']['temp'] - 273.15),
+            'rainfall': rain,
+            'windspeed': round(weather['wind']['speed']),
+            'time': datetime.datetime.fromtimestamp(weather['dt'])
+        }
+    
+    except:
+        print(traceback.format_exc())
+        print(" - " * 10)
+
