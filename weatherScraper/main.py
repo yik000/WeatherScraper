@@ -12,3 +12,10 @@ import datetime
 import sqlalchemy
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, Float, String, DateTime, insert
 
+
+"""
+API variables
+"""
+WEATHER = "http://api.openweathermap.org/data/2.5/weather?"
+CITY = "Dublin,IE"
+
